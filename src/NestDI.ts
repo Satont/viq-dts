@@ -35,6 +35,7 @@ export class NestDI implements IDependencyRegistryEngine {
     const all = this._injectionProxy.getAllServices();
     for(const service of all){
       this.modules.add(service);
+      this.#moduleRef?.create(service.constructor)
     }
     return this.app;
   }
