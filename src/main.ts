@@ -7,20 +7,21 @@ import { ModuleRef, NestFactory } from '@nestjs/core';
 import { AppModule } from './nest.modules.js';
 import { IDependencyRegistryEngine } from '@discordx/di/build/esm/logic/IDependencyRegistryEngine'
 import { InstanceOf } from '@discordx/di/build/esm';
+import { INestApplicationContext } from "@nestjs/common";
 
-const app = await NestFactory.createApplicationContext(AppModule);
+let app:INestApplicationContext | null= null;
 
 class NestDI implements IDependencyRegistryEngine {
-  #moduleRef: ModuleRef
+  #moduleRef: ModuleRef | undefined
   modules: Set<any> = new Set();
 
   constructor() {
-    this.#moduleRef = app.get(ModuleRef)
+    this.#moduleRef = app?.get(ModuleRef)
   }
 
   addService<T>(classType: T) {
     console.log(classType)
-    this.#moduleRef.create(classType as any).then((i) => this.modules.add(i))
+    this.#moduleRef?.create(classType as any).then((i) => this.modules.add(i))
     // this.modules.add(instance)
   }
 
@@ -29,24 +30,21 @@ class NestDI implements IDependencyRegistryEngine {
   }
 
   getService<T>(classType: T): InstanceOf<T> | null {
+    if(!this.#moduleRef){
+      return null;
+    }
     return this.#moduleRef.get(classType as any)
   }
 }
 
 const di = new NestDI()
 DIService.engine = di
+app = await NestFactory.createApplicationContext(AppModule);
 
 export const bot = new Client({
   botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)],
-  intents: [
-    IntentsBitField.Flags.Guilds,
-    IntentsBitField.Flags.GuildMembers,
-    IntentsBitField.Flags.GuildMessages,
-    IntentsBitField.Flags.GuildMessageReactions,
-    IntentsBitField.Flags.GuildVoiceStates,
-    IntentsBitField.Flags.MessageContent
-  ],
-  silent: true,
+  intents: [],
+  silent: false,
 });
 
 bot.once("ready", async () => {
@@ -65,8 +63,8 @@ bot.on("messageCreate", (message: Message) => {
 });
 
 async function run() {
-  await app.init()
-  await bot.login();
+  await app?.init()
+  await bot.login("ODk0MzEzMzk1OTMzODM5Mzkw.GfWIGJ.aLmKBkcw9nZfoXmNr7gBiRc3kYSy3uHRCwV72Y");
 }
 
 run();
