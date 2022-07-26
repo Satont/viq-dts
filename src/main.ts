@@ -2,11 +2,6 @@ import "reflect-metadata";
 import type { Interaction, Message } from "discord.js";
 import { Client, DIService } from "discordx";
 import { NestDI } from "./NestDI.js";
-import { InjectionProxy } from "./InjectionProxy.js";
-
-const injectionProxy = new InjectionProxy();
-DIService.engine = injectionProxy;
-const di = new NestDI(injectionProxy);
 
 export const bot = new Client({
   botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)],
@@ -30,10 +25,11 @@ bot.on("messageCreate", (message: Message) => {
 });
 
 async function run() {
-  const app = await di.copyToNest();
+  const di = new NestDI();
   DIService.engine = di;
-  await app?.init();
-  await bot.login("");
+  const appModuleResolver = await di.init();
+  await appModuleResolver.init();
+  await bot.login("ODk0MzEzMzk1OTMzODM5Mzkw.GSVXCh.6tx6GvIuLRcNSffcpQWOK0piRqtzNoSfbp-5QI");
 }
 
 run();
