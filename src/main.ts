@@ -33,7 +33,7 @@ async function run() {
   const app = await di.copyToNest();
   DIService.engine = di;
   await app?.init();
-  await bot.login("ODk0MzEzMzk1OTMzODM5Mzkw.GfWIGJ.aLmKBkcw9nZfoXmNr7gBiRc3kYSy3uHRCwV72Y");
+  await bot.login("");
 }
 
 run();
