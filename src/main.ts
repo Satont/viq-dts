@@ -29,7 +29,7 @@ async function run() {
   DIService.engine = di;
   const appModuleResolver = await di.init();
   await appModuleResolver.init();
-  await bot.login("ODk0MzEzMzk1OTMzODM5Mzkw.GSVXCh.6tx6GvIuLRcNSffcpQWOK0piRqtzNoSfbp-5QI");
+  await bot.login("");
 }
 
 run();
