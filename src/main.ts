@@ -66,7 +66,7 @@ bot.on("messageCreate", (message: Message) => {
 
 async function run() {
   await app.init()
-  await bot.login('OTAyMjE3NzU1OTcxOTc3Mjg3.GRa0Wo.ymURK1SBw9G0DNPwkv_LXwbGhiBpe2PajE_9u4');
+  await bot.login();
 }
 
 run();

@@ -5,7 +5,7 @@ import { ModuleTwoTest } from './nest2.modules.js';
 import { Test } from './test.js';
 
 @Module({
-  imports: [ModuleTwoTest],
+  imports: [],
   controllers: [],
   providers: [Test, SlashExample, AnotherClass],
 })
