@@ -7,6 +7,6 @@ export class Test2 {
 
   foo() {
     this.i++;
-    return "bar" + this.i;
+    return "clazz2 bar" + this.i;
   }
 }

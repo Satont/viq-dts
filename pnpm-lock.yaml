@@ -4,6 +4,7 @@ specifiers:
   '@discordx/di': ^3.0.0
   '@discordx/importer': ^1.1.10
   '@discordx/pagination': ^3.0.0
+  '@nestjs/axios': ^0.1.0
   '@nestjs/common': ^9.0.5
   '@nestjs/core': ^9.0.5
   '@types/node': ^18.0.6
@@ -25,6 +26,7 @@ dependencies:
   '@discordx/di': 3.0.0
   '@discordx/importer': 1.1.10
   '@discordx/pagination': 3.0.0_discord.js@14.0.3
+  '@nestjs/axios': 0.1.0_d3lkybs743xih4gqxxdbtu2qq4
   '@nestjs/common': 9.0.5_j5hagqx4mwzscud4kyjdvubauy
   '@nestjs/core': 9.0.5_d3lkybs743xih4gqxxdbtu2qq4
   acrcloud: 1.4.0
@@ -137,6 +139,21 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
+
+  /@nestjs/axios/0.1.0_d3lkybs743xih4gqxxdbtu2qq4:
+    resolution: {integrity: sha512-b2TT2X6BFbnNoeteiaxCIiHaFcSbVW+S5yygYqiIq5i6H77yIU3IVuLdpQkHq8/EqOWFwMopLN8jdkUT71Am9w==}
+    peerDependencies:
+      '@nestjs/common': ^7.0.0 || ^8.0.0 || ^9.0.0
+      reflect-metadata: ^0.1.12
+      rxjs: ^6.0.0 || ^7.0.0
+    dependencies:
+      '@nestjs/common': 9.0.5_j5hagqx4mwzscud4kyjdvubauy
+      axios: 0.27.2
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.6
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@nestjs/common/9.0.5_j5hagqx4mwzscud4kyjdvubauy:
     resolution: {integrity: sha512-13mncUq4JDSluI5IGvusDZANUfNYCIyPamxlPXJOLawGp8JjqRLHGn9ppNJp7W9mN/B/SmpvW9NFEYFIrKYj9g==}
@@ -306,6 +323,15 @@ packages:
 
   /asynckit/0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+    dev: false
+
+  /axios/0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+    dependencies:
+      follow-redirects: 1.15.1
+      form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /balanced-match/1.0.2:
@@ -481,9 +507,28 @@ packages:
       to-regex-range: 5.0.1
     dev: true
 
+  /follow-redirects/1.15.1:
+    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /form-data/2.5.1:
     resolution: {integrity: sha512-m21N3WOmEEURgk6B9GLOE4RuWOFf28Lhh9qGYeNlGq4VDXUlJy2th2slBNU8Gp8EzloYZOibZJ7t5ecIrFSjVA==}
     engines: {node: '>= 0.12'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.35
+    dev: false
+
+  /form-data/4.0.0:
+    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
+    engines: {node: '>= 6'}
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
